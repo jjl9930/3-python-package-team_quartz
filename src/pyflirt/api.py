@@ -4,7 +4,7 @@ from .data import BANK, COMPLIMENT_TEMPLATES, categories as _categories
 from typing import cast, Dict
 
 
-__all__ = ["line", "lines", "categories"]
+__all__ = ["line", "lines", "categories", "search"]
 
 def categories() -> List[str]:
     """Return a sorted list of all available pickup line categories."""
@@ -98,3 +98,30 @@ def compliment(role="developer", mood="sweet", name=None, emojis=0, seed=None):
     if emojis > 0:
         text += " " + "💖" * emojis
     return text
+
+def search(
+    substring: str, 
+    category: Optional[str] = None, 
+    cheese: Optional[int] = None
+) -> List[str]:
+    category = _check_cat(category)
+
+    if cheese is not None and not (1 <= int(cheese) <= 5):
+        raise ValueError("cheese must be in 1..5")
+    
+    if category is None:
+        lines = [line for cat in BANK.values() for line in cat]
+    else:
+        lines = BANK[category]
+
+    if cheese is not None:
+        lines = [line for line in lines if line.get("cheese", 3) == cheese]
+
+    results = []
+    for line in lines:
+        text = line["text"].lower()
+        # Case-Insensitive Match
+        if text.contains(substring.lower()):
+            results.append(line["text"])
+
+    return results

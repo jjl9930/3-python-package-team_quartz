@@ -1,4 +1,4 @@
-from pyflirt import line, lines, categories
+from pyflirt import line, lines, categories, search
 import pytest
 from pyflirt import compliment
 
@@ -52,3 +52,9 @@ def test_compliment_differs_with_different_seeds():
     a = compliment(role="designer", mood="cheeky", seed=42)
     b = compliment(role="designer", mood="cheeky", seed=43)
     assert a != b
+
+def test_lines_search():
+    results = search("Are")
+    for result in results:
+        result = result.lower()
+        assert result.contains("are")
