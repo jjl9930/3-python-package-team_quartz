@@ -1,5 +1,8 @@
 import pytest
+
 from pyflirt import categories, line, lines, compliment
+from pyflirt import rate_line
+import re
 
 def test_categories_sorted_and_nonempty():
     cats = categories()
