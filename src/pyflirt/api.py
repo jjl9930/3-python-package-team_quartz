@@ -226,3 +226,56 @@ def stats() -> dict:
     total = sum(by_category.values())
     return {"total": total, "by_category": by_category, "cheese_hist": cheese_hist}
   
+def rainbow(text: str) -> str:
+    """
+    Return the given text as a colorful rainbow string using ANSI color codes.
+
+    Each character in the input text is assigned a different color in sequence,
+    cycling through a palette of bright colors for a cheerful rainbow effect.
+
+    Example:
+        >>> print(rainbow("Hello World!"))
+        (Displays 'Hello World!' with rainbow colors in your terminal)
+    """
+    # Define the ANSI escape codes for bright rainbow colors.
+    palette = [
+        "\033[91m",  # Red
+        "\033[93m",  # Yellow
+        "\033[92m",  # Green
+        "\033[94m",  # Blue
+        "\033[95m",  # Magenta
+        "\033[96m",  # Cyan
+    ]
+
+    # ANSI escape code to reset the color back to default at the end.
+    reset_code = "\033[0m"
+
+    if not text:
+        return ""
+
+    # The color cycles through the palette using modulo arithmetic.
+    colored_chars = []
+    for index, char in enumerate(text):
+        color = palette[index % len(palette)]
+        colored_chars.append(f"{color}{char}")
+
+    # Join all colored characters and append the reset code.
+    rainbow_text = "".join(colored_chars) + reset_code
+
+    return rainbow_text
+
+def ascii_heart() -> str:
+    """Return a cute ASCII heart graphic."""
+    return textwrap.dedent("""
+         *****     *****
+       ********* *********
+      *********************
+      *********************
+       *******************
+        *****************
+         ***************
+           ***********
+             *******
+               ***
+                *
+    """).strip("\n")

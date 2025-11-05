@@ -11,6 +11,8 @@ Public API:
 - stylize(text, width=None, uppercase=False, color="auto")
 - say(category="nerdy", name=None, cheese=2, seed=None, width=None, uppercase=False, color="auto", emojis=0)
 - rate_line(text, metric="length", seed=None)
+- rainbow(text: str)
+- ascii_heart()
 """
 
 from .api import (
@@ -26,6 +28,8 @@ from .api import (
     _check_cat,
     _with_name,
     _pool,
+    rainbow,
+    ascii_heart
 )
 
 __all__ = [
@@ -38,6 +42,8 @@ __all__ = [
     "rate_line",
     "stylize",
     "say",
+    "rainbow",
+    "ascii_heart",
 ]
 __version__ = "0.1.0"
 
