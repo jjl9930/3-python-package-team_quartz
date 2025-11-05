@@ -224,6 +224,9 @@ python -m build
 Team
 - Siqi Zhu — [@HelenZhutt](https://github.com/HelenZhutt)
 - Daniel Lee - [@danielleesignup](https://github.com/danielleesignup)
+- Sam Murshed - [@Sammurshed] (https://github.com/SamMurshed)
+- Matthew Viola
+- jjlee
 
 
 More links
