@@ -205,6 +205,8 @@ python -m build
 
 Team
 - Siqi Zhu — [@HelenZhutt](https://github.com/HelenZhutt)
+- Daniel Lee - [@danielleesignup](https://github.com/danielleesignup)
+
 
 More links
 - [Contributors Graph](https://github.com/swe-students-fall2025/3-python-package-team_quartz/graphs/contributors)
