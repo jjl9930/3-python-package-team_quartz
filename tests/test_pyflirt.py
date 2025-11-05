@@ -1,4 +1,4 @@
-from pyflirt import line, lines, categories, search, compliment, rate_line
+from pyflirt import line, lines, categories, search, compliment, rate_line, ascii_heart, rainbow
 import pytest
 import re
 
