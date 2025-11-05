@@ -32,6 +32,18 @@ print(lines(n=5, category="cs"))
 print(compliment(role="developer", mood="sweet"))
 ```
 
+## Demo program
+
+Run the example that showcases all functions (`categories`, `line`, `lines`, `compliment`, `search`, `stats`, `stylize`, `say`, `rate_line`):
+
+```bash
+# from the repo root
+PYTHONPATH=src python examples/demo.py
+
+# or with pipenv
+pipenv run python -c "import sys; sys.path.insert(0, 'src'); import examples.demo as d; d.main()"
+```
+
 ## Functions
 
 ### `line(category="nerdy", name=None, cheese=2, seed=None)`
