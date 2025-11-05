@@ -1,23 +1,13 @@
+# src/pyflirt/__init__.py
 """
 pyflirt 💘
-
-APIs:
+Public API:
+- categories()
 - line(category, name, cheese, seed)
-- lines(n, categories, name, cheese, seed)
+- lines(n, category, name, cheese, seed)
 - compliment(role, mood, name, emojis, seed)
-- rate_line(text, metric, seed)
 """
-from .api import line, lines, categories, compliment
+from .api import categories, line, lines, compliment
 
-from .core import ( 
-    compliment,
-)
-
-__all__ = [
-    "compliment",
-    "line",
-    "lines",
-    "categories",
-]
-
+__all__ = ["categories", "line", "lines", "compliment"]
 __version__ = "0.1.0"
