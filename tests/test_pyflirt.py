@@ -204,3 +204,25 @@ def test_rainbow_empty_string():
     """Empty input should return an empty string (no escape codes)."""
     result = rainbow("")
     assert result == "", f"Expected empty string, got {result!r}"
+
+def test_ascii_heart_is_string():
+    """ascii_heart() should return a string."""
+    art = ascii_heart()
+    assert isinstance(art, str)
+
+def test_ascii_heart_contains_heart_shape():
+    """ascii_heart() output should contain '*' as part of the ASCII art."""
+    art = ascii_heart()
+    assert "*" in art, "Expected '*' characters in ASCII heart output"
+
+def test_ascii_heart_multiple_lines():
+    """The ASCII heart should be multi-line."""
+    art = ascii_heart()
+    lines = art.splitlines()
+    assert len(lines) > 3, "Expected at least 4 lines in ASCII heart"
+
+def test_ascii_heart_consistent_output():
+    """The ASCII heart should produce consistent output each call."""
+    art1 = ascii_heart()
+    art2 = ascii_heart()
+    assert art1 == art2, "ascii_heart() output should be deterministic"
