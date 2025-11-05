@@ -101,36 +101,10 @@ def compliment(role="developer", mood="sweet", name=None, emojis=0, seed=None):
         text += " " + "💖" * emojis
     return text
 
-def search(
-    substring: str, 
-    category: Optional[str] = None, 
-    cheese: Optional[int] = None
-) -> List[str]:
-    category = _check_cat(category)
-
-    if cheese is not None and not (1 <= int(cheese) <= 5):
-        raise ValueError("cheese must be in 1..5")
-    
-    if category is None:
-        lines = [line for cat in BANK.values() for line in cat]
-    else:
-        lines = BANK[category]
-
-    if cheese is not None:
-        lines = [line for line in lines if line.get("cheese", 3) == cheese]
-
-    results = []
-    for line in lines:
-        text = line["text"].lower()
-        # Case-Insensitive Match
-        if text.contains(substring.lower()):
-            results.append(line["text"])
-
-    return results
 def stylize(
     text: str,
     *,
-    width: int | None = None,
+    width: Optional[int] = None,
     uppercase: bool = False,
     color: Literal["auto", "none", "magenta", "cyan", "green"] = "auto",
 ) -> str:
@@ -161,7 +135,7 @@ def say(
     name: Optional[str] = None,
     cheese: int = 2,
     seed: Optional[int] = None,
-    width: int | None = None,
+    width: Optional[int] = None,
     uppercase: bool = False,
     color: Literal["auto", "none", "magenta", "cyan", "green"] = "auto",
     emojis: int = 0,

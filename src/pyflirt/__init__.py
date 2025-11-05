@@ -8,12 +8,9 @@ Public API:
 - compliment(role, mood, name, emojis, seed)
 """
 
-from .api import line, lines, categories, compliment, search, stats
+from .api import line, lines, categories, compliment, search, stats, rate_line
 
-__all__ = ["line", "lines", "categories", "compliment", "search", "stats", "rate_line"]
-
-
-__all__ = ["categories", "line", "lines", "compliment"]
+__all__ = ["categories", "line", "lines", "compliment", "search", "stats", "rate_line"]
 __version__ = "0.1.0"
 
 # Provide a convenient module reference for test usage like `pyflirt.search(...)`
