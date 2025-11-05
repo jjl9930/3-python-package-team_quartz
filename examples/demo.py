@@ -1,4 +1,14 @@
-from pyflirt import line, lines, categories, compliment, search, stats
+from pyflirt import (
+    line,
+    lines,
+    categories,
+    compliment,
+    search,
+    stats,
+    stylize,
+    say,
+    rate_line,
+)
 
 def main():
     print("== categories() ==")
@@ -18,7 +28,6 @@ def main():
     print(compliment(role="developer", mood="sweet", name="Jamie", emojis=2, seed=3))
 
     print("\n== search() ==")
-
     for h in search(query="you", limit=5, seed=4):
         print("-", h)
 
@@ -27,6 +36,23 @@ def main():
     print("total:", st["total"])
     print("by_category:", st["by_category"])
     print("cheese_hist:", st["cheese_hist"])
+
+    print("\n== stylize() ==")
+    sample = line(category=cat or "nerdy", seed=5)
+    styled = stylize(sample, width=20, uppercase=True, color="none")
+    print(styled)
+
+    print("\n== say() ==")
+    # say() prints the formatted line and returns it
+    returned = say(category=cat or "nerdy", seed=6, width=18, emojis=1, color="none")
+    print("(returned)", returned)
+
+    print("\n== rate_line() ==")
+    txt = line(category=cat or "nerdy", seed=7)
+    print("text:", txt)
+    print("length score:", rate_line(txt, metric="length"))
+    print("cheese score:", rate_line(txt, metric="cheese_level"))
+    print("random score (seeded):", rate_line(txt, metric="random", seed=42))
 
 if __name__ == "__main__":
     main()
