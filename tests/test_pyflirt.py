@@ -1,3 +1,4 @@
+from pyflirt import line, lines, categories, search
 import pytest
 
 from pyflirt import categories, line, lines, compliment
