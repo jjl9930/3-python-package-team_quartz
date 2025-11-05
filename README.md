@@ -1,5 +1,7 @@
 # pyflirt
 
+[![CI](https://github.com/swe-students-fall2025/3-python-package-team_quartz/actions/workflows/ci.yml/badge.svg)](https://github.com/swe-students-fall2025/3-python-package-team_quartz/actions/workflows/ci.yml)
+
 A Python package that gives you developer-themed pickup lines and compliments. Because coding should be fun.
 
 ## What is this?
@@ -125,4 +127,6 @@ python -m build
 
 ## Contributors
 
-See the [contributors page](https://github.com/swe-students-fall2025/3-python-package-team_quartz/graphs/contributors) for a list of everyone who worked on this project.
+- [Contributors Graph](https://github.com/swe-students-fall2025/3-python-package-team_quartz/graphs/contributors)
+- [Commits](https://github.com/swe-students-fall2025/3-python-package-team_quartz/commits)
+
