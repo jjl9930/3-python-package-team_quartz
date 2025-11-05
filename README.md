@@ -34,7 +34,7 @@ print(compliment(role="developer", mood="sweet"))
 
 ## Demo program
 
-Run the example that showcases all functions (`categories`, `line`, `lines`, `compliment`, `search`, `stats`, `stylize`, `say`, `rate_line`):
+Run the example that showcases all functions (`categories`, `line`, `lines`, `compliment`, `search`, `stats`, `stylize`, `say`, `rate_line`, `rainbow`, `ascii_heart`):
 
 ```bash
 # from the repo root
@@ -160,6 +160,24 @@ Example:
 rate_line("You are so sweet", metric="cheese_level")
 ```
 
+### `rainbow(text)`
+
+Colorize text with rainbow ANSI codes 🌈
+Useful for terminals that support color formatting.
+
+Example:
+```python
+print(rainbow("You light up my console! 💻"))
+```
+
+### `ascii_heart()`
+
+Return a multi-line ASCII heart ❤️. A great decoration after a compliment.
+
+Example:
+```python
+print(ascii_heart())
+```
 ## Development Setup
 
 If you want to work on this package:

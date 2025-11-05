@@ -8,6 +8,8 @@ from pyflirt import (
     stylize,
     say,
     rate_line,
+    rainbow,
+    ascii_heart,
 )
 
 def main():
@@ -53,6 +55,14 @@ def main():
     print("length score:", rate_line(txt, metric="length"))
     print("cheese score:", rate_line(txt, metric="cheese_level"))
     print("random score (seeded):", rate_line(txt, metric="random", seed=42))
+
+    print("\n== rainbow() ==")
+    rainbow_text = rainbow("You brighten up my terminal 💻💘")
+    print(rainbow_text)
+
+    print("\n== ascii_heart() ==")
+    print(ascii_heart())
+
 
 if __name__ == "__main__":
     main()
