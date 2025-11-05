@@ -4,7 +4,7 @@ from .data import BANK, COMPLIMENT_TEMPLATES, categories as _categories
 from typing import cast, Dict
 
 
-__all__ = ["line", "lines", "categories"]
+__all__ = ["line", "lines", "categories", "compliment", "search", "stats"]
 
 def categories() -> List[str]:
     """Return a sorted list of all available pickup line categories."""
@@ -125,3 +125,53 @@ def rate_line(text: str, metric: str = "length", seed: Optional[int] = None) -> 
 
     rng = random.Random(seed)
     return rng.uniform(0, 10)
+
+def search(
+    query: str,
+    category: Optional[str] = None,
+    name: Optional[str] = None,
+    cheese: int = 5,
+    limit: int = 10,
+    seed: Optional[int] = None,
+) -> List[str]:
+    """Return up to `limit` lines containing `query` (case-insensitive)."""
+    if not query:
+        raise ValueError("query must be non-empty")
+    if not 1 <= int(cheese) <= 5:
+        raise ValueError("cheese must be in 1..5")
+    if limit <= 0:
+        return []
+
+    category = _check_cat(category)
+    q = query.lower()
+
+    def ok(e: dict) -> bool:
+        return e.get("cheese", 3) <= cheese and q in str(e.get("text", "")).lower()
+
+    if category is None:
+        pool = [e for items in BANK.values() for e in items if ok(e)]
+    else:
+        pool = [e for e in BANK[category] if ok(e)]
+
+    rng = random.Random(seed) if seed is not None else random
+    rng.shuffle(pool)
+
+    out: List[str] = []
+    for e in pool[:limit]:
+        out.append(_with_name(e.get("text", ""), name))
+    return out
+
+
+def stats() -> dict:
+    """Return counts: total, by_category, and cheese_hist (1..5)."""
+    cats = _categories()
+    by_category = {c: len(BANK.get(c, [])) for c in cats}
+    cheese_hist = {i: 0 for i in range(1, 6)}
+    for c in cats:
+        for e in BANK.get(c, []):
+            ch = int(e.get("cheese", 3))
+            if 1 <= ch <= 5:
+                cheese_hist[ch] += 1
+    total = sum(by_category.values())
+    return {"total": total, "by_category": by_category, "cheese_hist": cheese_hist}
+  
