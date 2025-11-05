@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/swe-students-fall2025/3-python-package-team_quartz/actions/workflows/ci.yml/badge.svg)](https://github.com/swe-students-fall2025/3-python-package-team_quartz/actions/workflows/ci.yml)
 
-A Python package that gives you developer-themed pickup lines and compliments. Because coding should be fun.
+A small Python package with developer‑themed pickup lines and compliments. Nothing serious—just something light to play with while practicing packaging, testing, and CI.
 
 ## What is this?
 
@@ -97,6 +97,69 @@ print(categories())
 # ['classic', 'cs', 'math', 'nerdy', 'poetic']
 ```
 
+### `search(query, category=None, name=None, cheese=5, limit=10, seed=None)`
+
+Find up to `limit` lines containing `query` (case-insensitive), optionally filtered.
+
+- `query`: substring to match (required)
+- `category`: filter by category or search all
+- `name`: optional replacement for `{name}` placeholders
+- `cheese`: 1–5 max cheese allowed in results
+- `limit`: max results to return
+- `seed`: for deterministic ordering
+
+Example:
+```python
+search("code", category="cs", limit=3, seed=7)
+```
+
+### `stats()`
+
+Return counts for available lines.
+
+Returns a dict with keys: `total`, `by_category`, and `cheese_hist`.
+
+Example:
+```python
+s = stats()
+print(s["total"], s["by_category"], s["cheese_hist"])
+```
+
+### `stylize(text, width=None, uppercase=False, color="auto")`
+
+Format a string with optional wrapping, uppercasing, and ANSI color.
+
+- `width`: wrap to this many columns (None = no wrap)
+- `uppercase`: True to uppercase the text
+- `color`: one of `"auto"`, `"none"`, `"magenta"`, `"cyan"`, `"green"`
+
+Example:
+```python
+stylize("hello world", width=8, uppercase=True, color="none")
+```
+
+### `say(category="nerdy", name=None, cheese=2, seed=None, width=None, uppercase=False, color="auto", emojis=0)`
+
+Generate a line, decorate it (wrap/case/color/emojis), print it, and return it.
+
+Example:
+```python
+say(category="nerdy", seed=1, width=16, color="none", emojis=2)
+```
+
+### `rate_line(text, metric="length"|"cheese_level"|"random", seed=None)`
+
+Score a line by the chosen metric.
+
+- `length`: higher for shorter lines (simple heuristic)
+- `cheese_level`: counts cheesy keywords
+- `random`: seeded 0–10 score
+
+Example:
+```python
+rate_line("You are so sweet", metric="cheese_level")
+```
+
 ## Development Setup
 
 If you want to work on this package:
@@ -134,11 +197,16 @@ python -m build
 
 ## Links
 
-- [PyPI Package](https://pypi.org/project/pyflirt/)
+- [PyPI Package](https://pypi.org/project/pyflirt/0.1.0/)
+- [TestPyPI (0.1.0)](https://test.pypi.org/project/pyflirt/0.1.0/)
 - [GitHub Repository](https://github.com/swe-students-fall2025/3-python-package-team_quartz)
 
 ## Contributors
 
+Team
+- Siqi Zhu — [@HelenZhutt](https://github.com/HelenZhutt)
+
+More links
 - [Contributors Graph](https://github.com/swe-students-fall2025/3-python-package-team_quartz/graphs/contributors)
 - [Commits](https://github.com/swe-students-fall2025/3-python-package-team_quartz/commits)
 
