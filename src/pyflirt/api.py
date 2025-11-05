@@ -2,6 +2,8 @@ import random
 from typing import List, Optional
 from .data import BANK, COMPLIMENT_TEMPLATES, categories as _categories
 from typing import cast, Dict
+import os, textwrap
+from typing import Literal
 
 
 __all__ = ["line", "lines", "categories"]
@@ -98,3 +100,50 @@ def compliment(role="developer", mood="sweet", name=None, emojis=0, seed=None):
     if emojis > 0:
         text += " " + "💖" * emojis
     return text
+def stylize(
+    text: str,
+    *,
+    width: int | None = None,
+    uppercase: bool = False,
+    color: Literal["auto", "none", "magenta", "cyan", "green"] = "auto",
+) -> str:
+    """
+    Post-process a string with wrapping, casing, and ANSI color.
+      - width: wrap to N columns (None = no wrap)
+      - uppercase: True to SHOUT
+      - color: 'auto' enables color only on TTY; or force 'magenta'/'cyan'/'green'/'none'
+    """
+    s = text.upper() if uppercase else text
+    if width:
+        s = "\n".join(textwrap.wrap(s, width=width))
+
+    palette = {"magenta": "\033[95m", "cyan": "\033[96m", "green": "\033[92m"}
+    reset = "\033[0m"
+
+    if color == "none":
+        return s
+    if color == "auto":
+        color = "magenta" if os.getenv("TERM") else "none"
+    if color in palette:
+        return f"{palette[color]}{s}{reset}"
+    return s
+def say(
+    *,
+    category: Optional[str] = "nerdy",
+    name: Optional[str] = None,
+    cheese: int = 2,
+    seed: Optional[int] = None,
+    width: int | None = None,
+    uppercase: bool = False,
+    color: Literal["auto", "none", "magenta", "cyan", "green"] = "auto",
+    emojis: int = 0,
+) -> str:
+    """
+    Generate a line, optionally decorate it (wrap/case/color), print it, and return it.
+    """
+    txt = line(category=category, name=name, cheese=cheese, seed=seed)
+    if emojis > 0:
+        txt += " " + "💘" * emojis
+    pretty = stylize(txt, width=width, uppercase=uppercase, color=color)
+    print(pretty)
+    return pretty
